@@ -1,0 +1,132 @@
+body {
+    background-color: #D7BEA8;
+    color: #F3D9DC;
+}
+
+.heading {
+    position: static;
+    transform: rotate(-90deg);
+    color:#F4D35E;
+    font-size: 80px;
+    text-align: center;
+    top: 20%;
+    left: 80%;
+    transform: translateX(-20%) translateY(90%) rotate(-90deg);
+
+}
+
+
+.heading.active {
+    animation: rotate 2s forwards;
+}
+
+.page-container {
+    position: relative;
+    border: 2px solid pink;
+    width: 100%;
+    height: 580px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+    overflow: hidden;
+}
+.page-container .pages:not(.active) {
+    flex: 0.7; /* shrink proportionally */
+    opacity: 0.5;
+}
+
+.page-content {
+    visibility: hidden;
+}
+
+/* MERGED .pages BLOCK */
+.pages {
+    flex: 1; /* all divs share equal width */
+    height: 500px;
+    padding: 2px;
+    box-sizing: border-box;
+    border: 1px solid #28AFB0;
+    background-color: #744253;
+    transition: 
+        flex 1s ease,
+        clip-path 1s ease,
+        opacity 0.4s ease;
+
+}
+h4 {
+    text-decoration: underline;
+}
+#page-04 p:not(.heading) {
+    font-size: 20px;
+}
+
+h1, h2, h3 {
+    text-decoration: line-through;
+}
+a {
+    color:rgb(237, 108, 205);
+}
+
+/* INITIAL CLIP PATHS */
+.pages.even {
+    clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%);
+}
+
+.pages.odd {
+    clip-path: polygon(0 0%, 100% 10%, 100% 90%, 0 100%);
+}
+
+/* HOVER ANIMATIONS */
+.pages.even.active {
+    animation: morph-odd 3s forwards;
+    
+}
+
+.pages.odd.active {
+    animation: morph-even 3s forwards;
+}
+.pages.active {
+    flex: 3;   /* takes 3x more space */
+    opacity: 1;
+}
+
+.page-container .pages:not(.active) {
+    flex: 0.7; /* shrinks */
+    opacity: 0.5;
+}
+
+/* ------------------------------ */
+/* KEYFRAMES */
+/* ------------------------------ */
+
+@keyframes morph-odd {
+    from {
+        clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%);
+    }
+    to {
+        clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+@keyframes morph-even {
+    from {
+        clip-path: polygon(0 0%, 100% 10%, 100% 90%, 0 100%);
+    }
+    to {
+        clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(-90deg);
+        font-size: 80px;
+    }
+    to {
+        transform: rotate(0deg);
+        font-size: 30px;
+    }
+}
